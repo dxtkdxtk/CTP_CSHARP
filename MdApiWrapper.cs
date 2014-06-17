@@ -68,7 +68,14 @@ namespace QuantBox.CSharp2CTP
             // Simply call Dispose(false).
             Dispose(false);
         }
-
+        /// <summary>
+        /// 行情连接
+        /// </summary>
+        /// <param name="szPath">行情流数据路径</param>
+        /// <param name="szAddresses">行情端服务器地址</param>
+        /// <param name="szBrokerId">期商ID</param>
+        /// <param name="szInvestorId">投资者ID</param>
+        /// <param name="szPassword">密码</param>
         public void Connect(string szPath, string szAddresses, string szBrokerId, string szInvestorId, string szPassword)
         {
             this.szPath = szPath;
@@ -149,7 +156,10 @@ namespace QuantBox.CSharp2CTP
                 }
             }
         }
-
+        /// <summary>
+        /// 订阅行情
+        /// </summary>
+        /// <param name="inst">需要订阅的合约，可用逗号或者分号隔开</param>
         public void Subscribe(string inst)
         {
             lock (_lockMd)
@@ -160,7 +170,10 @@ namespace QuantBox.CSharp2CTP
                 }
             }
         }
-
+        /// <summary>
+        /// 退订行情
+        /// </summary>
+        /// <param name="inst">退订的合约，逗号或者分号隔开</param>
         public void Unsubscribe(string inst)
         {
             lock (_lockMd)

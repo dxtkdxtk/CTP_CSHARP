@@ -88,7 +88,9 @@ namespace QuantBox.CSharp2CTP
             _fnOnRtnTrade_Holder = OnRtnTrade_callback;
         }
 
-        //Implement IDisposable.
+        /// <summary>
+        /// 销毁
+        /// </summary>
         public void Dispose()
         {
             Dispose(true);
@@ -118,6 +120,17 @@ namespace QuantBox.CSharp2CTP
             Dispose(false);
         }
 
+        /// <summary>
+        /// 连接交易端
+        /// </summary>
+        /// <param name="szPath">交易流数据存放路径</param>
+        /// <param name="szAddresses">交易端服务器ID</param>
+        /// <param name="szBrokerId">期商ID</param>
+        /// <param name="szInvestorId">投资者ID</param>
+        /// <param name="szPassword">投资者密码</param>
+        /// <param name="nResumeType">流重传方式</param>
+        /// <param name="szUserProductInfo">用户产品信息</param>
+        /// <param name="szAuthCode">验证码</param>
         public void Connect(string szPath, string szAddresses,
             string szBrokerId, string szInvestorId, string szPassword,
             THOST_TE_RESUME_TYPE nResumeType,
@@ -137,6 +150,9 @@ namespace QuantBox.CSharp2CTP
             Connect_TD();
         }
 
+        /// <summary>
+        /// 断开交易端
+        /// </summary>
         public void Disconnect()
         {
             Disconnect_TD();
@@ -223,6 +239,21 @@ namespace QuantBox.CSharp2CTP
             }
         }
 
+        /// <summary>
+        /// 下单操作
+        /// </summary>
+        /// <param name="szInstrument">合约代码</param>
+        /// <param name="Direction">买卖方向</param>
+        /// <param name="szCombOffsetFlag">组合开平标志</param>
+        /// <param name="szCombHedgeFlag">组合套保标志</param>
+        /// <param name="VolumeTotalOriginal">合约手数</param>
+        /// <param name="LimitPrice">报单价格</param>
+        /// <param name="OrderPriceType">报单价格类型</param>
+        /// <param name="TimeCondition">有效期时间类型</param>
+        /// <param name="ContingentCondition">触发条件类型</param>
+        /// <param name="StopPrice">止损价格类型，可用于条件单定价</param>
+        /// <param name="VolumeCondition">成交量类型</param>
+        /// <returns></returns>
         public int SendOrder(
             string szInstrument,
             TThostFtdcDirectionType Direction,
@@ -255,7 +286,10 @@ namespace QuantBox.CSharp2CTP
                 StopPrice,
                 VolumeCondition);
         }
-
+        /// <summary>
+        /// 撤单
+        /// </summary>
+        /// <param name="pOrder">要撤的单子，用OnRtnOrder获取</param>
         public void CancelOrder(ref CThostFtdcOrderField pOrder)
         {
             if (null == m_pTdApi || IntPtr.Zero == m_pTdApi)
@@ -265,7 +299,9 @@ namespace QuantBox.CSharp2CTP
 
             TraderApi.TD_CancelOrder(m_pTdApi, ref pOrder);
         }
-
+        /// <summary>
+        /// 请求查询资金账户
+        /// </summary>
         public void ReqQryTradingAccount()
         {
             if (null == m_pTdApi || IntPtr.Zero == m_pTdApi)
@@ -274,7 +310,10 @@ namespace QuantBox.CSharp2CTP
             }
             TraderApi.TD_ReqQryTradingAccount(m_pTdApi);
         }
-
+        /// <summary>
+        /// 请求查询投资者持仓
+        /// </summary>
+        /// <param name="szInstrument">合约名</param>
         public void ReqQryInvestorPosition(string szInstrument)
         {
             if (null == m_pTdApi || IntPtr.Zero == m_pTdApi)
@@ -283,7 +322,10 @@ namespace QuantBox.CSharp2CTP
             }
             TraderApi.TD_ReqQryInvestorPosition(m_pTdApi, szInstrument);
         }
-
+        /// <summary>
+        /// 请求查询持仓详情
+        /// </summary>
+        /// <param name="szInstrument">合约名</param>
         public void ReqQryInvestorPositionDetail(string szInstrument)
         {
             if (null == m_pTdApi || IntPtr.Zero == m_pTdApi)
@@ -293,7 +335,10 @@ namespace QuantBox.CSharp2CTP
             TraderApi.TD_ReqQryInvestorPositionDetail(m_pTdApi, szInstrument);
         }
 
-
+        /// <summary>
+        /// 请求查询合约交易手续费率
+        /// </summary>
+        /// <param name="szInstrument">合约名</param>
         public void ReqQryInstrumentCommissionRate(string szInstrument)
         {
             if (null == m_pTdApi || IntPtr.Zero == m_pTdApi)
@@ -302,6 +347,10 @@ namespace QuantBox.CSharp2CTP
             }
             TraderApi.TD_ReqQryInstrumentCommissionRate(m_pTdApi,szInstrument);
         }
+        /// <summary>
+        /// 请求查询合约
+        /// </summary>
+        /// <param name="szInstrument">合约名</param>
         public void ReqQryInstrument(string szInstrument)
         {
             if (null == m_pTdApi || IntPtr.Zero == m_pTdApi)
@@ -310,6 +359,11 @@ namespace QuantBox.CSharp2CTP
             }
             TraderApi.TD_ReqQryInstrument(m_pTdApi, szInstrument);
         }
+        /// <summary>
+        /// 请求查询合约保证金率
+        /// </summary>
+        /// <param name="szInstrument">合约名</param>
+        /// <param name="HedgeFlag">投机套保标志</param>
         public void ReqQryInstrumentMarginRate(string szInstrument, TThostFtdcHedgeFlagType HedgeFlag)
         {
             if (null == m_pTdApi || IntPtr.Zero == m_pTdApi)
