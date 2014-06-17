@@ -3,6 +3,9 @@ using System.Runtime.InteropServices;
 
 namespace QuantBox.CSharp2CTP
 {
+    /// <summary>
+    /// 行情API
+    /// </summary>
     public class MdApi
     {
         [DllImport(CommApi.DllFileName, EntryPoint = "CTP_RegOnRtnDepthMarketData")]

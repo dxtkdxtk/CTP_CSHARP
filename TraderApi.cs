@@ -3,6 +3,9 @@ using System.Runtime.InteropServices;
 
 namespace QuantBox.CSharp2CTP
 {
+    /// <summary>
+    /// 交易端API
+    /// </summary>
     public class TraderApi
     {
         [DllImport(CommApi.DllFileName, EntryPoint = "CTP_RegOnErrRtnOrderAction")]

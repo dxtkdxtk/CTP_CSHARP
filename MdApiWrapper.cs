@@ -4,6 +4,9 @@ using System.Linq;
 
 namespace QuantBox.CSharp2CTP
 {
+    /// <summary>
+    /// 行情API包装器，用于生成行情端
+    /// </summary>
     public class MdApiWrapper : IDisposable
     {
         public event OnConnectHander OnConnect;
